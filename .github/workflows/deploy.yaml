@@ -42,7 +42,7 @@ jobs:
       - uses: crazy-max/ghaction-docker-meta@v1
         id: docker-meta
         with:
-          images: ghcr.io/hu-tao-supremacy/deploys/${{ env.DEPLOYS_IMAGE }}
+          images: ghcr.io/hu-tao-supremacy/${{ env.DEPLOYS_IMAGE }}
           tag-custom-only: true
           tag-custom: ${{ env.DEPLOYS_SHA7 }}
       - uses: docker/login-action@v1
@@ -62,7 +62,7 @@ jobs:
           cd ./deploys
           cd ./hts/envs/${{ env.DEPLOYS_ENV }}/
           git checkout -b hts/${{ env.DEPLOYS_ENV }}/${{ env.DEPLOYS_REPOSITORY }}/${{ env.DEPLOYS_SHA7 }}
-          kustomize edit set image ${{ env.DEPLOYS_REPOSITORY }}=ghcr.io/hu-tao-supremacy/deploys/${{ env.DEPLOYS_IMAGE }}@${{ steps.docker-build.outputs.digest }}
+          kustomize edit set image ${{ env.DEPLOYS_REPOSITORY }}=ghcr.io/hu-tao-supremacy/${{ env.DEPLOYS_IMAGE }}@${{ steps.docker-build.outputs.digest }}
           cat kustomization.yaml
           git add kustomization.yaml
           git commit -m 'deploy(hts/${{ env.DEPLOYS_ENV }}/${{ env.DEPLOYS_REPOSITORY }}): ${{ github.event.client_payload.repository }}@${{ env.DEPLOYS_SHA7 }}'
