@@ -4,6 +4,6 @@ nameSuffix: -prod
 resources:
 - ../../base
 images:
-- digest: sha256:e7e11e514f8c0124b020c2dca63b19e0647f2a1a73ddd090b6351ac345fd6b9e
+- digest: sha256:21b3c2c0246013097837892d4b14211fd4620bfe4ceb0c1f1229635b266eaa1a
   name: account
-  newName: ghcr.io/hu-tao-supremacy/deploys/account-prod
+  newName: ghcr.io/hu-tao-supremacy/account-prod
