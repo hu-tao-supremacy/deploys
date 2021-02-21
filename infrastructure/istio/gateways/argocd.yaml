@@ -1,0 +1,36 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: argocd
+  namespace: default
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+    - port:
+        number: 443
+        name: https
+        protocol: HTTPS
+      tls:
+        mode: SIMPLE
+        credentialName: ingress-production
+      hosts:
+        - "argocd.onepass.app"
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: argocd
+  namespace: default
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - argocd
+  http:
+    - route:
+        - destination:
+            # <service>.<namespace>.svc.cluster.local
+            host: argocd-server.argocd.svc.cluster.local
+            port:
+              number: 80

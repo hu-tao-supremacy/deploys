@@ -1,0 +1,101 @@
+name: Build & Deploy
+on:
+  repository_dispatch:
+    types: [request-build]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: ${{ github.repository }}
+          token: ${{ secrets.DODOCO_BOT_PAT }}
+          path: ./deploys
+          fetch-depth: 0
+      - run: |
+          REQUEST_REPOSITORY=$(echo '${{ github.event.client_payload.repository }}' | rev | cut -d'/' -f1 | rev)
+          REQUEST_BRANCH=$(echo '${{ github.event.client_payload.ref }}' | rev | cut -d'/' -f1 | rev)
+          REQUEST_SHA=${{ github.event.client_payload.sha }}
+          echo "DEPLOYS_REPOSITORY=${REQUEST_REPOSITORY}" >> $GITHUB_ENV
+          echo "DEPLOYS_ENV=${REQUEST_BRANCH/main/prod}" >> $GITHUB_ENV
+          echo "DEPLOYS_SHA7=${REQUEST_SHA::7}" >> $GITHUB_ENV
+      - run: |
+          echo "DEPLOYS_IMAGE=${{ env.DEPLOYS_REPOSITORY }}-${{ env.DEPLOYS_ENV }}" >> $GITHUB_ENV
+      - run: |
+          echo ${{ env.DEPLOYS_REPOSITORY }}
+          echo ${{ env.DEPLOYS_ENV }}
+          echo ${{ env.DEPLOYS_SHA7 }}
+          echo ${{ env.DEPLOYS_IMAGE }}
+          cd ./deploys
+          git clone https://github.com/hu-tao-supremacy/build-scripts.git
+      - uses: actions/checkout@v2
+        with:
+          repository: ${{ github.event.client_payload.repository }}
+          token: ${{ secrets.DODOCO_BOT_PAT }}
+          ref: ${{ github.event.client_payload.ref }}
+          fetch-depth: 0
+          path: ./${{ env.DEPLOYS_REPOSITORY }}
+      - run: |
+          cd ./${{ env.DEPLOYS_REPOSITORY }}
+          make apis
+      - uses: docker/setup-buildx-action@v1
+      - uses: crazy-max/ghaction-docker-meta@v1
+        id: docker-meta
+        with:
+          images: ghcr.io/hu-tao-supremacy/deploys/${{ env.DEPLOYS_IMAGE }}
+          tag-custom-only: true
+          tag-custom: ${{ env.DEPLOYS_SHA7 }}
+      - uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: dodoco-bot
+          password: ${{ secrets.DODOCO_BOT_PAT }}
+      - uses: docker/build-push-action@v2
+        id: docker-build
+        with:
+          context: ./${{ env.DEPLOYS_REPOSITORY }}
+          file: ./deploys/build-scripts/${{ env.DEPLOYS_REPOSITORY }}.Dockerfile
+          tags: ${{ steps.docker-meta.outputs.tags }}
+          labels: ${{ steps.docker-meta.outputs.labels }}
+          push: true
+      - run: |
+          cd ./deploys
+          cd ./hts/envs/${{ env.DEPLOYS_ENV }}/
+          git checkout -b hts/${{ env.DEPLOYS_ENV }}/${{ env.DEPLOYS_REPOSITORY }}/${{ env.DEPLOYS_SHA7 }}
+          kustomize edit set image ${{ env.DEPLOYS_REPOSITORY }}=ghcr.io/hu-tao-supremacy/deploys/${{ env.DEPLOYS_IMAGE }}@${{ steps.docker-build.outputs.digest }}
+          cat kustomization.yaml
+          git add kustomization.yaml
+          git commit -m 'deploy(hts/${{ env.DEPLOYS_ENV }}/${{ env.DEPLOYS_REPOSITORY }}): ${{ github.event.client_payload.repository }}@${{ env.DEPLOYS_SHA7 }}'
+        env:
+          GIT_COMMITTER_NAME: dodoco-bot
+          GIT_AUTHOR_NAME: dodoco-bot
+          EMAIL: 77519537+dodoco-bot@users.noreply.github.com
+      - uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.DODOCO_BOT_PAT }}
+          branch: hts/${{ env.DEPLOYS_ENV }}/${{ env.DEPLOYS_REPOSITORY }}/${{ env.DEPLOYS_SHA7 }}
+          directory: "./deploys"
+  pull-request:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - run: |
+          REQUEST_REPOSITORY=$(echo '${{ github.event.client_payload.repository }}' | rev | cut -d'/' -f1 | rev)
+          REQUEST_BRANCH=$(echo '${{ github.event.client_payload.ref }}' | rev | cut -d'/' -f1 | rev)
+          REQUEST_SHA=${{ github.event.client_payload.sha }}
+          echo "DEPLOYS_REPOSITORY=${REQUEST_REPOSITORY}" >> $GITHUB_ENV
+          echo "DEPLOYS_ENV=${REQUEST_BRANCH/main/prod}" >> $GITHUB_ENV
+          echo "DEPLOYS_SHA7=${REQUEST_SHA::7}" >> $GITHUB_ENV
+      - run: |
+          echo "DEPLOYS_IMAGE=${{ env.DEPLOYS_REPOSITORY }}-${{ env.DEPLOYS_ENV }}" >> $GITHUB_ENV
+      - run: |
+          echo ${{ env.DEPLOYS_REPOSITORY }}
+          echo ${{ env.DEPLOYS_ENV }}
+          echo ${{ env.DEPLOYS_SHA7 }}
+          echo ${{ env.DEPLOYS_IMAGE }}
+      - uses: repo-sync/pull-request@v2
+        with:
+          source_branch: hts/${{ env.DEPLOYS_ENV }}/${{ env.DEPLOYS_REPOSITORY }}/${{ env.DEPLOYS_SHA7 }}
+          destination_branch: "main"
+          github_token: ${{ secrets.DODOCO_BOT_PAT }}

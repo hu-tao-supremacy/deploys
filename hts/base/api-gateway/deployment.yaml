@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: api-gateway
+  name: api-gateway
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-gateway
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: api-gateway
+    spec:
+      containers:
+        - image: api-gateway
+          name: api-gateway
+          ports:
+            - containerPort: 3000
+              name: http
+          resources: {}
+          env:
+            - name: PORT
+              value: "3000"
+            - name: HTS_SVC_ACCOUNT
+              value: $(HTS_SVC_ACCOUNT).$(HTS_NAMESPACE).svc.cluster.local:50051
+            - name: HTS_SVC_FACILITY
+              value: $(HTS_SVC_FACILITY).$(HTS_NAMESPACE).svc.cluster.local:50051
+status: {}

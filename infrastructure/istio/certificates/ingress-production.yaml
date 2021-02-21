@@ -1,0 +1,17 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: ingress-production
+  namespace: istio-system
+spec:
+  secretName: ingress-production
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer
+  commonName: whoami.onepass.app
+  dnsNames:
+    - whoami.onepass.app
+    - argocd.onepass.app
+    - grafana.onepass.app
+    - api.onepass.app
+    - api-staging.onepass.app
