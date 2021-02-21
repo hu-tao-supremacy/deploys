@@ -2,4 +2,8 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 nameSuffix: -dev
 resources:
-  - ../../base
+- ../../base
+images:
+- digest: sha256:6e0c2cc658ff3892e2b76b5f39cc558064286e8a5cb0b3b5a21898e6141331a4
+  name: facility
+  newName: ghcr.io/hu-tao-supremacy/facility-dev
