@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: facility
+  name: facility
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: facility
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: facility
+    spec:
+      containers:
+        - image: facility
+          name: facility
+          ports:
+            - containerPort: 50051
+              name: grpc
+          resources: {}
+          env:
+            - name: GRPC_PORT
+              value: "50051"
+status: {}

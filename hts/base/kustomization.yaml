@@ -6,6 +6,8 @@ resources:
   - api-gateway/service.yaml
   - account/deployment.yaml
   - account/service.yaml
+  - facility/deployment.yaml
+  - facility/service.yaml
 vars:
   - name: HTS_NAMESPACE
     objref:
