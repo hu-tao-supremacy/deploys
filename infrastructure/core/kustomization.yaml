@@ -6,3 +6,6 @@ resources:
 
   # "Sealed Secrets" for Kubernetes - A Kubernetes controller and tool for one-way encrypted Secrets
   - https://github.com/bitnami-labs/sealed-secrets/releases/download/v0.15.0/controller.yaml
+
+  # Kiali - Kiali project, observability for the Istio service mesh
+  - https://raw.githubusercontent.com/istio/istio/master/samples/addons/kiali.yaml
