@@ -1,32 +1,13 @@
 apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
-metadata:
-  name: grafana
-  namespace: default
-spec:
-  selector:
-    istio: ingressgateway
-  servers:
-    - port:
-        number: 443
-        name: https
-        protocol: HTTPS
-      tls:
-        mode: SIMPLE
-        credentialName: ingress-production
-      hosts:
-        - "grafana.onepass.app"
----
-apiVersion: networking.istio.io/v1alpha3
 kind: VirtualService
 metadata:
   name: grafana
   namespace: default
 spec:
   hosts:
-    - "*"
+    - "grafana.onepass.app"
   gateways:
-    - grafana
+    - default-gateway
   http:
     - route:
         - destination:
