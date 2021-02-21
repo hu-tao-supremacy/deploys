@@ -4,6 +4,7 @@ resources:
   - certificates/issuers/staging.yaml
   - certificates/issuers/production.yaml
   - certificates/ingress-production.yaml
+  - gateways/https-redirect.yaml
   - gateways/whoami.yaml
   - gateways/argocd.yaml
   - gateways/grafana.yaml
