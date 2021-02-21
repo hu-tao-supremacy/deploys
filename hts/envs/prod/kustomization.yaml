@@ -4,7 +4,7 @@ nameSuffix: -prod
 resources:
 - ../../base
 images:
-- digest: sha256:7dd23463fdd6ec64453517c031d508713cc9754224ce84a61417dd4d0bf6a14b
+- digest: sha256:9009b9e708dbfe4b5ad11b1eb95aef42ec943032b9e2340e56371e69ba6c9395
   name: account
   newName: ghcr.io/hu-tao-supremacy/account-prod
 - digest: sha256:03851dc7cea0bdd53d6f0f682fc21c427a8a255bc6385939f6af352f635d8f0c
