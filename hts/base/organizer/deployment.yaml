@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: organizer
+  name: organizer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: organizer
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: organizer
+    spec:
+      containers:
+        - image: organizer
+          name: organizer
+          ports:
+            - containerPort: 50051
+              name: grpc
+          resources: {}
+          env:
+            - name: GRPC_PORT
+              value: "50051"
+status: {}
