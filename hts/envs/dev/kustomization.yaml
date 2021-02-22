@@ -4,7 +4,7 @@ nameSuffix: -dev
 resources:
 - ../../base
 images:
-- digest: sha256:8802a18eb8239fa44591909301ec03e4b477b243b3d698356f381a1f5e754f1d
+- digest: sha256:48ab5355820896ec8e3d44d6abd611bd5a9741e3168a85626c7721c53e9973b3
   name: facility
   newName: ghcr.io/hu-tao-supremacy/facility-dev
 - digest: sha256:b537db0f77b380ad67a2b78b530160745789fe8fa26256001722d85d262c7775
