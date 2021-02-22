@@ -8,6 +8,8 @@ resources:
   - account/service.yaml
   - facility/deployment.yaml
   - facility/service.yaml
+  - participant/deployment.yaml
+  - participant/service.yaml
 vars:
   - name: HTS_NAMESPACE
     objref:

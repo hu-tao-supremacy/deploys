@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: participant
+  name: participant
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: participant
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: participant
+    spec:
+      containers:
+        - image: participant
+          name: participant
+          ports:
+            - containerPort: 50051
+              name: grpc
+          resources: {}
+          env:
+            - name: GRPC_PORT
+              value: "50051"
+status: {}
