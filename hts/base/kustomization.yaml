@@ -52,3 +52,11 @@ patches:
   - path: env.yaml
     target:
       kind: Deployment
+  - path: env-staging.yaml
+    target:
+      kind: Deployment
+      labelSelector: "env=staging"
+  - path: env-production.yaml
+    target:
+      kind: Deployment
+      labelSelector: "env=production"

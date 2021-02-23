@@ -1,0 +1,25 @@
+- op: add
+  path: "/spec/template/spec/containers/0/env"
+  value:
+    - name: POSTGRES_HOST
+      valueFrom:
+        secretKeyRef:
+          name: cloud-sql-staging
+          key: host
+    - name: POSTGRES_USER
+      valueFrom:
+        secretKeyRef:
+          name: cloud-sql-staging
+          key: user
+    - name: POSTGRES_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          name: cloud-sql-staging
+          key: password
+    - name: POSTGRES_DB
+      valueFrom:
+        secretKeyRef:
+          name: cloud-sql-staging
+          key: dataase
+    - name: POSTGRES_PORT
+      value: "5432"
