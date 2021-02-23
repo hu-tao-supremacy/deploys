@@ -27,3 +27,28 @@ vars:
       apiVersion: v1
     fieldref:
       fieldpath: metadata.name
+  - name: HTS_SVC_FACILITY
+    objref:
+      kind: Service
+      name: facility
+      apiVersion: v1
+    fieldref:
+      fieldpath: metadata.name
+  - name: HTS_SVC_ORGANIZER
+    objref:
+      kind: Service
+      name: organizer
+      apiVersion: v1
+    fieldref:
+      fieldpath: metadata.name
+  - name: HTS_SVC_PARTICIPANT
+    objref:
+      kind: Service
+      name: participant
+      apiVersion: v1
+    fieldref:
+      fieldpath: metadata.name
+patches:
+  - path: env.yaml
+    target:
+      kind: Deployment
