@@ -4,18 +4,18 @@ nameSuffix: -dev
 commonLabels:
   env: staging
 resources:
-  - ../../base
+- ../../base
 patches:
-  - path: env.yaml
-    target:
-      kind: Deployment
+- path: env.yaml
+  target:
+    kind: Deployment
 images:
-  - digest: sha256:74abd467a6b9a2b898dada1267ea782a0f67c1d7ac2a49cc883ea1a55ba18daa
-    name: facility
-    newName: ghcr.io/hu-tao-supremacy/facility-dev
-  - digest: sha256:461e90c0b484423bd0fa0460b62316ad976e89b37a085d6da26121a37c40f823
-    name: organizer
-    newName: ghcr.io/hu-tao-supremacy/organizer-dev
-  - digest: sha256:c15be3a4c5e40e346fbb32a5698c6a2cce629226b3438175a375bc39ca0a9f79
-    name: participant
-    newName: ghcr.io/hu-tao-supremacy/participant-dev
+- digest: sha256:74abd467a6b9a2b898dada1267ea782a0f67c1d7ac2a49cc883ea1a55ba18daa
+  name: facility
+  newName: ghcr.io/hu-tao-supremacy/facility-dev
+- digest: sha256:6cb86336041a74bee5f1d8b6f8841b550fc75679e13a1e61670d3431e22b53c6
+  name: organizer
+  newName: ghcr.io/hu-tao-supremacy/organizer-dev
+- digest: sha256:c15be3a4c5e40e346fbb32a5698c6a2cce629226b3438175a375bc39ca0a9f79
+  name: participant
+  newName: ghcr.io/hu-tao-supremacy/participant-dev
