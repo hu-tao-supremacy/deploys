@@ -1,15 +1,17 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 nameSuffix: -dev
+commonLabels:
+  env: staging
 resources:
-- ../../base
+  - ../../base
 images:
-- digest: sha256:48ab5355820896ec8e3d44d6abd611bd5a9741e3168a85626c7721c53e9973b3
-  name: facility
-  newName: ghcr.io/hu-tao-supremacy/facility-dev
-- digest: sha256:461e90c0b484423bd0fa0460b62316ad976e89b37a085d6da26121a37c40f823
-  name: organizer
-  newName: ghcr.io/hu-tao-supremacy/organizer-dev
-- digest: sha256:eb2cf97df14bf2cfeb108ca364b12106cbc4afc5c173d734a11b7d8aedf35472
-  name: participant
-  newName: ghcr.io/hu-tao-supremacy/participant-dev
+  - digest: sha256:48ab5355820896ec8e3d44d6abd611bd5a9741e3168a85626c7721c53e9973b3
+    name: facility
+    newName: ghcr.io/hu-tao-supremacy/facility-dev
+  - digest: sha256:461e90c0b484423bd0fa0460b62316ad976e89b37a085d6da26121a37c40f823
+    name: organizer
+    newName: ghcr.io/hu-tao-supremacy/organizer-dev
+  - digest: sha256:eb2cf97df14bf2cfeb108ca364b12106cbc4afc5c173d734a11b7d8aedf35472
+    name: participant
+    newName: ghcr.io/hu-tao-supremacy/participant-dev
