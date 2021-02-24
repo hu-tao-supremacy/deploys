@@ -10,7 +10,7 @@ patches:
   target:
     kind: Deployment
 images:
-- digest: sha256:74abd467a6b9a2b898dada1267ea782a0f67c1d7ac2a49cc883ea1a55ba18daa
+- digest: sha256:8d0684bba8de0f6e078e68f7b803384c4f832d39f3bcaf3d4860ac62a7a2a683
   name: facility
   newName: ghcr.io/hu-tao-supremacy/facility-dev
 - digest: sha256:b0e8543c8a2ba573504992ce52670acd8351c6c9fc000966343707ba02ec2aaa
