@@ -10,6 +10,9 @@ patches:
   target:
     kind: Deployment
 images:
+- digest: sha256:96e3482392d1ab9d1ab545accf9eadb6a9d3a8db484a6e0329dbf1025f377baf
+  name: api-gateway
+  newName: ghcr.io/hu-tao-supremacy/api-gateway-dev
 - digest: sha256:8d0684bba8de0f6e078e68f7b803384c4f832d39f3bcaf3d4860ac62a7a2a683
   name: facility
   newName: ghcr.io/hu-tao-supremacy/facility-dev
