@@ -16,6 +16,6 @@ images:
 - digest: sha256:b0e8543c8a2ba573504992ce52670acd8351c6c9fc000966343707ba02ec2aaa
   name: organizer
   newName: ghcr.io/hu-tao-supremacy/organizer-dev
-- digest: sha256:519d93536144a463b7a0daea140f41b4b6073545492078586a96f9e1c31f7d25
+- digest: sha256:8921fbee1f95d7b0a593089826bbb576b9e6a7d1f21e17fbe3d70d9d76f93792
   name: participant
   newName: ghcr.io/hu-tao-supremacy/participant-dev
