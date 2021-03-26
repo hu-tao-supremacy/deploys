@@ -4,18 +4,21 @@ nameSuffix: -prod
 commonLabels:
   env: production
 resources:
-  - ../../base
+- ../../base
 patches:
-  - path: env.yaml
-    target:
-      kind: Deployment
+- path: env.yaml
+  target:
+    kind: Deployment
 images:
-  - digest: sha256:9009b9e708dbfe4b5ad11b1eb95aef42ec943032b9e2340e56371e69ba6c9395
-    name: account
-    newName: ghcr.io/hu-tao-supremacy/account-prod
-  - digest: sha256:03851dc7cea0bdd53d6f0f682fc21c427a8a255bc6385939f6af352f635d8f0c
-    name: api-gateway
-    newName: ghcr.io/hu-tao-supremacy/api-gateway-prod
-  - digest: sha256:dc8920f15189fd5b9e3741f6a06aa29be2aeed057f20acc06803ff991cd15fc7
-    name: participant
-    newName: ghcr.io/hu-tao-supremacy/participant-prod
+- digest: sha256:9009b9e708dbfe4b5ad11b1eb95aef42ec943032b9e2340e56371e69ba6c9395
+  name: account
+  newName: ghcr.io/hu-tao-supremacy/account-prod
+- digest: sha256:03851dc7cea0bdd53d6f0f682fc21c427a8a255bc6385939f6af352f635d8f0c
+  name: api-gateway
+  newName: ghcr.io/hu-tao-supremacy/api-gateway-prod
+- digest: sha256:832b964e581d39cfaaf5bfe97fffa5e4dc9960568529228010b86ffb7755f2a5
+  name: organizer
+  newName: ghcr.io/hu-tao-supremacy/organizer-prod
+- digest: sha256:dc8920f15189fd5b9e3741f6a06aa29be2aeed057f20acc06803ff991cd15fc7
+  name: participant
+  newName: ghcr.io/hu-tao-supremacy/participant-prod
