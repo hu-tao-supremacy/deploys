@@ -25,6 +25,16 @@ spec:
           env:
             - name: PORT
               value: "3000"
+            - name: GCP_CREDENTIALS
+              valueFrom:
+                secretKeyRef:
+                  name: cloud-storage-secret
+                  key: cloudStorageCredentials
+            - name: GCP_BUCKET_NAME
+              valueFrom:
+                secretKeyRef:
+                  name: cloud-storage-secret
+                  key: cloudStorageBucketName
             - name: HTS_SVC_ACCOUNT
               value: $(HTS_SVC_ACCOUNT).$(HTS_NAMESPACE).svc.cluster.local:50051
             - name: HTS_SVC_FACILITY
