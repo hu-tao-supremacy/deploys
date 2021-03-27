@@ -4,3 +4,4 @@ resources:
   - cloud-storage-secret.sealed.yaml
   - cloud-sql-secret.sealed.yaml
   - cloud-sql-staging-secret.sealed.yaml
+  - chula-sso-secret.sealed.yaml
