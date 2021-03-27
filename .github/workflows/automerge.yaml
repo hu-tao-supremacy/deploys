@@ -1,0 +1,15 @@
+name: Automatically Merge Pull Requests
+on:
+  pull_request:
+    types:
+      - labeled
+jobs:
+  automerge:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: "pascalgn/automerge-action@v0.13.1"
+        env:
+          GITHUB_TOKEN: "${{ secrets.DODOCO_BOT_PAT }}"
+          GIT_COMMITTER_NAME: dodoco-bot
+          GIT_AUTHOR_NAME: dodoco-bot
+          EMAIL: 77519537+dodoco-bot@users.noreply.github.com
