@@ -98,4 +98,5 @@ jobs:
         with:
           source_branch: hts/${{ env.DEPLOYS_ENV }}/${{ env.DEPLOYS_REPOSITORY }}/${{ env.DEPLOYS_SHA7 }}
           destination_branch: "main"
+          pr_label: "automerge"
           github_token: ${{ secrets.DODOCO_BOT_PAT }}
