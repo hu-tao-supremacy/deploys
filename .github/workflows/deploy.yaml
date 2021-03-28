@@ -44,7 +44,9 @@ jobs:
         with:
           images: ghcr.io/hu-tao-supremacy/${{ env.DEPLOYS_IMAGE }}
           tag-custom-only: true
-          tag-custom: ${{ env.DEPLOYS_SHA7 }}
+          tag-custom:
+            - ${{ env.DEPLOYS_SHA7 }}
+            - latest
       - uses: docker/login-action@v1
         with:
           registry: ghcr.io
