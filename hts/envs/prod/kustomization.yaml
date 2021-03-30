@@ -13,7 +13,7 @@ images:
 - digest: sha256:77f00717250d34289ec5c19ed59f8360bb6c029bab46d968e4ed80a0680a02d1
   name: account
   newName: ghcr.io/hu-tao-supremacy/account-prod
-- digest: sha256:16bfa1abb93eb1196234fe466be05ecdecfa6c748d6bd0fc190380ff481ffb4f
+- digest: sha256:7881fb26d43b3f891e148c469541101af46404762747d26f5880a3cd3ac4db96
   name: api-gateway
   newName: ghcr.io/hu-tao-supremacy/api-gateway-prod
 - digest: sha256:91a515abb7eabb9e540b1ea04d2bc54ddfcc92ea415e9bd1b200b58ce7ebd169
