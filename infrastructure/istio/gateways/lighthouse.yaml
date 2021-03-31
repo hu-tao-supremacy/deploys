@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: lighthouse
+  namespace: default
+spec:
+  hosts:
+    - "lighthouse.onepass.app"
+  gateways:
+    - default-gateway
+  http:
+    - route:
+        - destination:
+            # <service>.<namespace>.svc.cluster.local
+            host: lit-ocean-90649.herokuapp.com
