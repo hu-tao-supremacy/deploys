@@ -14,5 +14,4 @@ spec:
     - grafana.onepass.app
     - api.onepass.app
     - graph.onepass.app
-    - lighthouse.onepass.app
     - api-staging.onepass.app
