@@ -1,7 +1,8 @@
-apiVersion: networking.istio.io/v1beta1
+apiVersion: networking.istio.io/v1alpha3
 kind: ServiceEntry
 metadata:
   name: lighthouse
+  namespace: default
 spec:
   hosts:
     - lighthouse.onepass.app
