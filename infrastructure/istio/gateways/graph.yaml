@@ -1,0 +1,22 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: graph
+  namespace: default
+spec:
+  hosts:
+    - "graph.onepass.app"
+  gateways:
+    - default-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /
+          rewrite:
+            uri: "/graphql"
+      route:
+        - destination:
+            # <service>.<namespace>.svc.cluster.local
+            host: api-gateway-prod.hts.svc.cluster.local
+            port:
+              number: 3000
