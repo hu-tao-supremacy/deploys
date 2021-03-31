@@ -11,6 +11,7 @@ resources:
   - gateways/grafana.yaml
   - gateways/api-gateway-dev.yaml
   - gateways/api-gateway-prod.yaml
+  - gateways/graph.yaml
   - https://raw.githubusercontent.com/istio/istio/release-1.9/samples/addons/prometheus.yaml
   - https://raw.githubusercontent.com/istio/istio/release-1.9/samples/addons/grafana.yaml
 patchesStrategicMerge:
