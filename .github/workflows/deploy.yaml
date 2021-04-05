@@ -39,6 +39,10 @@ jobs:
           cd ./${{ env.DEPLOYS_REPOSITORY }}
           make apis
       - uses: docker/setup-buildx-action@v1
+      - uses: actions/cache@v2
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx
       - uses: crazy-max/ghaction-docker-meta@v1
         id: docker-meta
         with:
