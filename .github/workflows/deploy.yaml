@@ -59,6 +59,8 @@ jobs:
       - uses: docker/build-push-action@v2
         id: docker-build
         with:
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache,mode=max
           context: ./${{ env.DEPLOYS_REPOSITORY }}
           file: ./deploys/build-scripts/${{ env.DEPLOYS_REPOSITORY }}.Dockerfile
           tags: ${{ steps.docker-meta.outputs.tags }}
