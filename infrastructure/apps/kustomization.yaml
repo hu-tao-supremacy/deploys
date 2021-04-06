@@ -5,5 +5,4 @@ resources:
   - sealed-secrets.yaml
   - istio.yaml
   - whoami.yaml
-  - hts-dev.yaml
   - hts-prod.yaml
