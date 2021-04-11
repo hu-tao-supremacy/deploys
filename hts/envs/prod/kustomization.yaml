@@ -10,7 +10,7 @@ patches:
   target:
     kind: Deployment
 images:
-- digest: sha256:33f284ebbb0533f05564e6aaa7dad03bdbf304423d7fb2631dbab72c68a137f0
+- digest: sha256:b19e62aa4227e12b04def36dbe44ce39cc6ab120086b6c8fec3ac0f4e740dd39
   name: account
   newName: ghcr.io/hu-tao-supremacy/account-prod
 - digest: sha256:e5dc4b4ce4eea06f2de4b1e1c52183e8d9ec527b6b53058213a3818b0d877053
