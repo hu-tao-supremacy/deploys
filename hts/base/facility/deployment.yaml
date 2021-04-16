@@ -16,7 +16,7 @@ spec:
         app: facility
     spec:
       containers:
-        - image: facility
+        - image: ghcr.io/hu-tao-supremacy/facility-dev:c8e8181
           name: facility
           ports:
             - containerPort: 50051
