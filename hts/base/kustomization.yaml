@@ -8,6 +8,8 @@ resources:
   - api-gateway/service.yaml
   - account/deployment.yaml
   - account/service.yaml
+  - facility/deployment.yaml
+  - facility/service.yaml
   - participant/deployment.yaml
   - participant/service.yaml
   - organizer/deployment.yaml
