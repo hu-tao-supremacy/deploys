@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: personalization
+  name: personalization
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: personalization
+  strategy: {}
+  template:
+    metadata:
+      labels:
+        app: personalization
+    spec:
+      containers:
+        - image: personalization
+          name: personalization
+          ports:
+            - containerPort: 50051
+              name: grpc
+          resources: {}
+          env:
+            - name: GRPC_PORT
+              value: "50051"
+status: {}
