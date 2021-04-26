@@ -14,6 +14,8 @@ resources:
   - participant/service.yaml
   - organizer/deployment.yaml
   - organizer/service.yaml
+  - personalization/deployment.yaml
+  - personalization/service.yaml
 vars:
   - name: HTS_NAMESPACE
     objref:
@@ -47,6 +49,13 @@ vars:
     objref:
       kind: Service
       name: participant
+      apiVersion: v1
+    fieldref:
+      fieldpath: metadata.name
+  - name: HTS_SVC_PERSONALIZATION
+    objref:
+      kind: Service
+      name: personalization
       apiVersion: v1
     fieldref:
       fieldpath: metadata.name
