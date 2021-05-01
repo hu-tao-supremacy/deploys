@@ -22,6 +22,6 @@ images:
 - digest: sha256:84809c84a27a3813bcd82f387d2ef87f67db5d174bf4e36442b87263348b2e38
   name: participant
   newName: ghcr.io/hu-tao-supremacy/participant-prod
-- digest: sha256:139297683664262af1dd15cf4cbf63c1579e2b79248813f9b4c0ce15ea9c3ae7
+- digest: sha256:73cb1974ea8a4526c2766f3feea583040fbe74f4a352c684b8a1fe3abf35aecc
   name: personalization
   newName: ghcr.io/hu-tao-supremacy/personalization-prod
